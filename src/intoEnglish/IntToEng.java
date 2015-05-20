@@ -19,9 +19,15 @@ public class IntToEng {
     			"ten","eleven","twelve","thirteen","fourteen","fifteen","sixteen","seventeen","eighteen","nineteen"};
     	String[] b={"","","twenty","thirty","forty","fifty","sixty","seventy","eighty","ninety"};
     	
+    	
+    	
+    	
     	int tenrank=n/10;
     	int unit=n%10;
     	int hrank=tenrank/10;
+    	int z=n%100;
+    	int x=n/100;
+    	
     	if(n==0){
     	return "zero";
     	}else if(0<n&&n<20){    	
@@ -34,7 +40,24 @@ public class IntToEng {
     		return a[hrank]+" hundred "+b[n%100/10]+" "+a[n%100%10];
     	}else if(n==1000){
     		return "thousand";
+    	}else if(n<=1019){
+    		return a[n/1000]+" thousand"+" "+b[n%100/10]+" "+a[n%100];
+    	}else if(n<1100){
+    		return a[n/1000]+" thousand"+" "+b[n%100/10]+" "+a[n%100%10];
+    		
+    	}else if(n>1099 && z<20 && x<20){
+    		return a[hrank]+" hundred"+" "+b[n%100/10]+" "+a[n%100];
+    	
+    	}else if(n>1099 && z<20){
+    		return b[n/100/10]+a[n%100%10]+" hundred"+" "+b[n%100/10]+" "+a[n%100];
+    	}else if(n<10000){
+    		return b[n/1000]+a[n%1000/100]+" hundred"+" "+b[n%100/10]+a[n%100%10];
+    	}else if(n==10000){
+    		return "ten thousand";
+    	
     	}
+    	
+    	
     	//a[hrank]で100のくらい。n%100で下２桁。
     	
     	return "つる";
